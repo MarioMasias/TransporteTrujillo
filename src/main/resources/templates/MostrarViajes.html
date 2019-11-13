@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Viajes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script></head>
+<body>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Origen</th>
+				<th>Destino</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="viaje : ${Viajes}">
+				 <th><span th:text="${viaje.id_viaje}">ID</span></th>
+				<th><span th:text="${viaje.Origen}"></span></th>
+				<th><span th:text="${viaje.Destino}"></span></th>
+			</tr>
+			<!--  <tr>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+			</tr>-->
+		</tbody>
+	</table>
+	
+
+<div class="col d-flex justify-content-center">
+	<div class="card">
+		<div class="col-sm-6">
+			<form action="#" th:action="@{/Viaje/addViaje}" th:object="${ViajeForm1}" method="post">
+				<p>Origen:  <input type="text" class="form-control" th:field="*{Origen}"></p>
+				<p>Destino: <input type="text" class="form-control" th:field="*{Destino}"></p>
+				<p>Costo: 	<input type="number" class="form-control" th:field="*{costo}"></p>
+				<p><input type="submit" class="btn btn-success" value="ENVIAR"></p>
+			</form>
+		</div>
+	</div>
+</div>
+	
+</body>
+</html>

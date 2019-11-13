@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Comprar Boleto</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NOMBRE</th>
+				<th>APELLIDO</th>
+				<th>DNI</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="boleto : ${Boletos}">
+				<th><span th:text="${boleto.nombre}"></span></th>
+				<th><span th:text="${boleto.apellido}"></span></th>
+				<th><span th:text="${boleto.DNI}"></span></th>
+			</tr>
+			<!--  <tr>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+			</tr>-->
+		</tbody>
+	</table>
+	
+<div class="col d-flex justify-content-center">
+	<div class="card">
+		<div class="col-sm-6">
+		<form action="#" th:action="@{/Boleto/addBoleto}" th:object="${BoletoForm1}" method="post">
+			<p>Nombre:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+			<p>Apellido: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+			<p>DNI:      	<input type="text" class="form-control"  th:field="*{DNI}"></p>
+			<p>TELEFONO: 	<input type="text" class="form-control"  th:field="*{telefono}"></p>
+			<!--  <p>MODELO:   	<input type="text" class="form-control"  th:field="*{modelo}"></p>
+			<p>AÑO: 	 	<input type="text" class="form-control"  th:field="*{anio}"></p>
+			<p>COLOR:   	<input type="text" class="form-control"  th:field="*{color}"></p>
+			<p>ESTADO: 		<input type="text" class="form-control"  th:field="*{estado}"></p>-->
+			<div class="dropdown">
+				<select th:object="${Buses}">
+					<option value="default">Seleccione un bus</option>
+	    			<option th:each="bus: ${Buses}" th:value="${bus.id}" th:text="${bus.placa}"/>
+				</select>
+			</div>
+			<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha}"></p>
+			<p>HORA PARTIDA:<input type="text" class="form-control"  th:field="*{hora_partida}"></p>
+			<p>COSTO:      	<input type="text" class="form-control"  th:field="*{costo}"></p>
+			<p>ORIGEN: 		<input type="text" class="form-control"  th:field="*{Origen}"></p>
+			<p>DESTINO: 	<input type="text" class="form-control"  th:field="*{Destino}"></p>
+			<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
+		</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

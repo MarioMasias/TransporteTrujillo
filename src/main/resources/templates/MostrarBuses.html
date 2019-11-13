@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Registro de Buses</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>PLACA</th>
+				<th>MODELO</th>
+				<th>AÑO</th>
+				<th>COLOR</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bus : ${Buses}">
+				 <th><span th:text="${bus.id}">ID</span></th>
+				 <th><span th:text="${bus.placa}"></span></th>
+				<th><span th:text="${bus.modelo}"></span></th>
+				<th><span th:text="${bus.anio}"></span></th>
+				<th><span th:text="${bus.color}"></span></th>
+			</tr>
+			<!--  <tr>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+			</tr>-->
+		</tbody>
+	</table>
+	
+<div class="col d-flex justify-content-center">
+	<div class="card">
+		<div class="col-sm-6">
+		<form action="#" th:action="@{/Bus/addBus}" th:object="${Bus1}" method="post">
+			<p>PLACA:   <input type="text" class="form-control"  th:field="*{placa}"></p>
+			<p>MODELO: 	<input type="text" class="form-control"  th:field="*{modelo}"></p>
+			<p>AÑO:     <input type="text" class="form-control"  th:field="*{anio}"></p>
+			<p>COLOR:   <input type="text" class="form-control"  th:field="*{color}"></p>
+			<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
+		</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

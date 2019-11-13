@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Pasajeros</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NOMBRE</th>
+				<th>APELLIDO</th>
+				<th>DNI</th>
+				<th>TELEFONO</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cliente : ${Clientes}">
+				 <th><span th:text="${cliente.id_Cliente}">ID</span></th>
+				<th><span th:text="${cliente.Nombre}"></span></th>
+				<th><span th:text="${cliente.Apellido}"></span></th>
+				<th><span th:text="${cliente.DNI}"></span></th>
+				<th><span th:text="${cliente.Telefono}"></span></th>
+			</tr>
+			<!--  <tr>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+				<th>ID</th>
+			</tr>-->
+		</tbody>
+	</table>
+	
+<div class="col d-flex justify-content-center">
+	<div class="card">
+		<div class="col-sm-6">
+		<form action="#" th:action="@{/Cliente/addCliente}" th:object="${Cliente1}" method="post">
+			<p>Nombre:   <input type="text" class="form-control"  th:field="*{Nombre}"></p>
+			<p>Apellido: <input type="text" class="form-control"  th:field="*{Apellido}"></p>
+			<p>DNI:      <input type="text" class="form-control"  th:field="*{DNI}"></p>
+			<p>Telefono:      <input type="text" class="form-control"  th:field="*{Telefono}"></p>
+			<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
+		</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

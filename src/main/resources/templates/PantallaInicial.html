@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Inicio</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style>
+		*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				background: #3423a6;
+				font-size:  12px;
+				background-image :url("[[@{/imgs/transportes-junin.jpg}]]");
+				background-repeat:no-repeat;
+				background-size:100%;
+				background-attachment: scroll;
+				
+			}
+			
+			
+			.caja{
+				float: left;
+				margin: 10px;
+				padding:12px;
+				border: 2px;
+				background: #7180b9;
+				width: 200px;
+				text-align: center;
+				/*display: inline-block;*/
+			}
+			a {
+				font-size: Arial 12px;
+				color: #dff3e4;
+				text-decoration: none;
+			}
+			
+			a:hover {
+			    /*background: #f9a03f;*/
+			    color: #fff;
+			}
+			
+			a:active {
+			    text-decoration: underline;
+			}
+			.boton{
+				background: #133c55;
+				margin: 5px;
+				padding: 5px;
+				display: inline-block;
+				border-radius: 100px;
+			}
+		
+	</style>
+</head>
+
+<body>
+
+	<div class="caja">
+			<h2>Administrar Viaje</h2>
+			<div class="boton">
+				<a href="http://localhost:8080/Viaje/verViaje">VIAJES</a>
+			</div>
+	</div>
+	<div class="caja">
+			<h2>Administrar Boletos</h2>
+			<div class="boton">
+				<a href="http://localhost:8080/Boleto/verBoleto">BOLETOS</a>
+			</div>
+	</div>
+</body>
+</html>
