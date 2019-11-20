@@ -2,15 +2,10 @@ package com.udemy.backendninja.Service.ModelForm;
 
 public class BoletoForm {
 	
-	private String modelo;
-	private String anio;
-	private String color;
-	private String estado;
+	private int id_Bus;
 	private String fecha;
 	private String hora_partida;
-	private int costo;
-	private String Origen;
-	private String Destino;
+	private int id_Viaje;
 	private String nombre;
 	private String apellido;
 	private String DNI;
@@ -20,54 +15,25 @@ public class BoletoForm {
 		
 	}
 
-	public BoletoForm(String modelo, String anio, String color, String estado, String fecha, String hora_partida,
-			int costo, String origen, String destino, String nombre, String apellido, String dNI, String telefono) {
+	public BoletoForm(int id_Bus, String fecha, String hora_partida, int id_Viaje, String nombre, String apellido,
+			String dNI, String telefono) {
 		super();
-		this.modelo = modelo;
-		this.anio = anio;
-		this.color = color;
-		this.estado = estado;
+		this.id_Bus = id_Bus;
 		this.fecha = fecha;
 		this.hora_partida = hora_partida;
-		this.costo = costo;
-		Origen = origen;
-		Destino = destino;
+		this.id_Viaje = id_Viaje;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		DNI = dNI;
 		this.telefono = telefono;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public int getId_Bus() {
+		return id_Bus;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public String getAnio() {
-		return anio;
-	}
-
-	public void setAnio(String anio) {
-		this.anio = anio;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setId_Bus(int id_Bus) {
+		this.id_Bus = id_Bus;
 	}
 
 	public String getFecha() {
@@ -86,28 +52,12 @@ public class BoletoForm {
 		this.hora_partida = hora_partida;
 	}
 
-	public int getCosto() {
-		return costo;
+	public int getId_Viaje() {
+		return id_Viaje;
 	}
 
-	public void setCosto(int costo) {
-		this.costo = costo;
-	}
-
-	public String getOrigen() {
-		return Origen;
-	}
-
-	public void setOrigen(String origen) {
-		Origen = origen;
-	}
-
-	public String getDestino() {
-		return Destino;
-	}
-
-	public void setDestino(String destino) {
-		Destino = destino;
+	public void setId_Viaje(int id_Viaje) {
+		this.id_Viaje = id_Viaje;
 	}
 
 	public String getNombre() {
@@ -141,6 +91,12 @@ public class BoletoForm {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "BoletoForm [id_Bus=" + id_Bus + ", fecha=" + fecha + ", hora_partida=" + hora_partida + ", id_Viaje="
+				+ id_Viaje + ", nombre=" + nombre + ", apellido=" + apellido + ", DNI=" + DNI + ", telefono=" + telefono
+				+ "]";
+	}
+
 }

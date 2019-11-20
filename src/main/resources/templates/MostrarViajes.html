@@ -6,44 +6,132 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script></head>
+  
+  <!-- LINK -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"  media="screen"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <body>
+	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
+            <a href="#" id="menu-action">
+              <i class="fa fa-bars"></i>
+              <span>Salir</span>
+            </a>
+            <div class="logo">
+                <img class="navbar-logo"  src="../imgs/Logo.png" /> &nbsp;&nbsp;&nbsp;
+                <span style="color:black;">Sistema de Transporte Junin</span>
+            </div>
+          </div>
 
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Origen</th>
-				<th>Destino</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="viaje : ${Viajes}">
-				 <th><span th:text="${viaje.id_viaje}">ID</span></th>
-				<th><span th:text="${viaje.Origen}"></span></th>
-				<th><span th:text="${viaje.Destino}"></span></th>
-			</tr>
-			<!--  <tr>
-				<th>ID</th>
-				<th>ID</th>
-				<th>ID</th>
-				<th>ID</th>
-			</tr>-->
-		</tbody>
-	</table>
+	   <div class="sidebar">
+            <ul>
+            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            </ul>
+        </div>
+	<div class="main">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Origen</th>
+					<th>Destino</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="viaje : ${Viajes}">
+					 <th><span th:text="${viaje.id_viaje}">ID</span></th>
+					<th><span th:text="${viaje.Origen}"></span></th>
+					<th><span th:text="${viaje.Destino}"></span></th>
+				</tr>
+			</tbody>
+		</table>
+		
 	
+		<!--  <div class="col d-flex justify-content-center">
+			<div class="card">
+				<div class="col-sm-6">
+					<form action="#" th:action="@{/Viaje/addViaje}" th:object="${ViajeForm1}" method="post">
+						<label>Origen: </label> 
+							<select name="origen" class="form-control" th:field="*{Origen}">
+		                		<option th:each="departamento : ${Departamentos}" th:value="${departamento.nombre}" 
+		                		th:text="${departamento.nombre}" />
+		                    </select> <br />
+						<label>Destino: </label> 
+							<select name="destino" class="form-control" th:field="*{Destino}">
+		                		<option th:each="departamento : ${Departamentos}" th:value="${departamento.nombre}" 
+		                		th:text="${departamento.nombre}" />
+		                    </select> <br />
+						<p>Costo: 	<input type="number" class="form-control" th:field="*{costo}"></p>
+						<p><input type="submit" class="btn btn-success" value="ENVIAR"></p>
+					</form>
+				</div>
+			</div>
+		</div>-->
+		
+		
+		<div class="container">
+		  <!-- Button to Open the Modal -->
+		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+		    Agregar Viaje
+		  </button>
 
-<div class="col d-flex justify-content-center">
-	<div class="card">
-		<div class="col-sm-6">
-			<form action="#" th:action="@{/Viaje/addViaje}" th:object="${ViajeForm1}" method="post">
-				<p>Origen:  <input type="text" class="form-control" th:field="*{Origen}"></p>
-				<p>Destino: <input type="text" class="form-control" th:field="*{Destino}"></p>
-				<p>Costo: 	<input type="number" class="form-control" th:field="*{costo}"></p>
-				<p><input type="submit" class="btn btn-success" value="ENVIAR"></p>
-			</form>
+		  <!-- The Modal -->
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Agregar Viaje</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-6">
+						<form action="#" th:action="@{/Viaje/addViaje}" th:object="${ViajeForm1}" method="post">
+							<!--  <p>Origen:  <input type="text" class="form-control" th:field="*{Origen}"></p>-->
+							<label>Origen: </label> 
+								<select name="origen" class="form-control" th:field="*{Origen}">
+			                		<option th:each="departamento : ${Departamentos}" th:value="${departamento.nombre}" 
+			                		th:text="${departamento.nombre}" />
+			                    </select> <br />
+							<!--  <p>Destino: <input type="text" class="form-control" th:field="*{Destino}"></p>-->
+							<label>Destino: </label> 
+								<select name="destino" class="form-control" th:field="*{Destino}">
+			                		<option th:each="departamento : ${Departamentos}" th:value="${departamento.nombre}" 
+			                		th:text="${departamento.nombre}" />
+			                    </select> <br />
+							<p>Costo: 	<input type="number" class="form-control" th:field="*{costo}"></p>
+							<p><input type="submit" class="btn btn-success" value="ENVIAR"></p>
+						</form>
+						</div>
+					</div>
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
+		  
 		</div>
+		
 	</div>
-</div>
-	
 </body>
 </html>

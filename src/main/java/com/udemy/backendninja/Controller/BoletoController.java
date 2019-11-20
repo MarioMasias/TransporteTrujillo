@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.udemy.backendninja.Service.BoletoService;
 import com.udemy.backendninja.Service.BusService;
+import com.udemy.backendninja.Service.ViajeService;
 import com.udemy.backendninja.Service.ModelForm.BoletoForm;
 
 @Controller
@@ -25,6 +26,9 @@ public class BoletoController {
 	@Qualifier("BusService")
 	private BusService busService;
 	
+	@Autowired
+	@Qualifier("ViajeService")
+	private ViajeService viajeService;
 	
 
 	
@@ -34,6 +38,7 @@ public class BoletoController {
 		mav.addObject("BoletoForm1", new BoletoForm());
 		mav.addObject("Boletos", boletoService.listar());
 		mav.addObject("Buses", busService.listar());
+		mav.addObject("Viajes", viajeService.listAllViaje());
 		return mav;
 	}
 	

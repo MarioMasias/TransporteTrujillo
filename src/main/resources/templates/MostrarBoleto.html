@@ -3,62 +3,94 @@
 <head>
 <meta charset="ISO-8859-1"/>
 <title>Comprar Boleto</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <!-- LINK -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"  media="screen"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>NOMBRE</th>
-				<th>APELLIDO</th>
-				<th>DNI</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="boleto : ${Boletos}">
-				<th><span th:text="${boleto.nombre}"></span></th>
-				<th><span th:text="${boleto.apellido}"></span></th>
-				<th><span th:text="${boleto.DNI}"></span></th>
-			</tr>
-			<!--  <tr>
-				<th>ID</th>
-				<th>ID</th>
-				<th>ID</th>
-				<th>ID</th>
-			</tr>-->
-		</tbody>
-	</table>
+	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
+            <a href="#" id="menu-action">
+              <i class="fa fa-bars"></i>
+              <span>Salir</span>
+            </a>
+            <div class="logo">
+                <img class="navbar-logo"  src="../imgs/Logo.png" /> &nbsp;&nbsp;&nbsp;
+                <span style="color:black;">Sistema de Transporte Junin</span>
+            </div>
+          </div>
+
+	   <div class="sidebar">
+            <ul>
+            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            </ul>
+        </div>
+	<div class="main">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NOMBRE</th>
+					<th>APELLIDO</th>
+					<th>DNI</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="boleto : ${Boletos}">
+					<th><span th:text="${boleto.nombre}"></span></th>
+					<th><span th:text="${boleto.apellido}"></span></th>
+					<th><span th:text="${boleto.DNI}"></span></th>
+				</tr>
+				</tbody>
+			</table>
 	
-<div class="col d-flex justify-content-center">
-	<div class="card">
-		<div class="col-sm-6">
-		<form action="#" th:action="@{/Boleto/addBoleto}" th:object="${BoletoForm1}" method="post">
-			<p>Nombre:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
-			<p>Apellido: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
-			<p>DNI:      	<input type="text" class="form-control"  th:field="*{DNI}"></p>
-			<p>TELEFONO: 	<input type="text" class="form-control"  th:field="*{telefono}"></p>
-			<!--  <p>MODELO:   	<input type="text" class="form-control"  th:field="*{modelo}"></p>
-			<p>AÑO: 	 	<input type="text" class="form-control"  th:field="*{anio}"></p>
-			<p>COLOR:   	<input type="text" class="form-control"  th:field="*{color}"></p>
-			<p>ESTADO: 		<input type="text" class="form-control"  th:field="*{estado}"></p>-->
-			<div class="dropdown">
-				<select th:object="${Buses}">
-					<option value="default">Seleccione un bus</option>
-	    			<option th:each="bus: ${Buses}" th:value="${bus.id}" th:text="${bus.placa}"/>
-				</select>
+	
+	
+	
+			<div class="col d-flex justify-content-center">
+				<div class="card">
+					<div class="col-sm-6">
+					<form action="#" th:action="@{/Boleto/addBoleto}" th:object="${BoletoForm1}" method="post">
+						<p>Nombre:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+						<p>Apellido: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+						<p>DNI:      	<input type="text" class="form-control"  th:field="*{DNI}"></p>
+						<p>TELEFONO: 	<input type="text" class="form-control"  th:field="*{telefono}"></p>
+						<label>Seleccione un bus: </label> 
+								<select name="bus" class="form-control" th:field="*{id_Bus}">
+			                		<option th:each="bus : ${Buses}" th:value="${bus.id}" 
+			                		th:text="${bus.placa}" />
+			                    </select> <br />
+						<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha}"></p>
+						<p>HORA PARTIDA:<input type="text" class="form-control"  th:field="*{hora_partida}"></p>
+						
+						<label>Seleccione un viaje: </label> 
+								<select name="viaje" class="form-control" th:field="*{id_Viaje}">
+			                		<option th:each="viaje : ${Viajes}" th:value="${viaje.id_viaje}" 
+			                		th:text="${viaje.Origen +'-'+  viaje.Destino}" />
+			                    </select> <br />
+						<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
+					</form>
+					</div>
+				</div>
 			</div>
-			<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha}"></p>
-			<p>HORA PARTIDA:<input type="text" class="form-control"  th:field="*{hora_partida}"></p>
-			<p>COSTO:      	<input type="text" class="form-control"  th:field="*{costo}"></p>
-			<p>ORIGEN: 		<input type="text" class="form-control"  th:field="*{Origen}"></p>
-			<p>DESTINO: 	<input type="text" class="form-control"  th:field="*{Destino}"></p>
-			<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
-		</form>
+			
+
+			
 		</div>
-	</div>
-</div>
 </body>
 </html>

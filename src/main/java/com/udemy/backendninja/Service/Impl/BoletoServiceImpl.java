@@ -12,16 +12,21 @@ import com.udemy.backendninja.Entity.Clientes;
 import com.udemy.backendninja.Repository.BoletoJPARepository;
 import com.udemy.backendninja.Service.BoletoService;
 import com.udemy.backendninja.Service.ClientesService;
+import com.udemy.backendninja.Service.TarifaService;
 import com.udemy.backendninja.Service.ModelForm.BoletoForm;
 @Service("BoletoService")
 public class BoletoServiceImpl implements BoletoService{
 	@Autowired
-	@Qualifier("boletoJPARepository")
+	@Qualifier("boletoJPARespository")
 	private BoletoJPARepository boletoJPARepository;
 	
 	@Autowired
 	@Qualifier("ClienteService")
 	private ClientesService clienteService;
+	
+	@Autowired
+	@Qualifier("TarifaService")
+	private TarifaService tarifaService;
 
 	@Override
 	public List<Boleto> listar() {
@@ -45,9 +50,12 @@ public class BoletoServiceImpl implements BoletoService{
 		System.out.println(c1.toString());
 		c2=clienteService.addClientes(c1);
 		System.out.println("RETORNADO: -->"+c2.getId_Cliente());
-		/*Bus*/
-		Bus b1= new Bus();
-		Bus b2= new Bus();
+		Boleto boleto1= new Boleto();
+		boleto1.setId_Bus(boleto.getId_Bus());
+		boleto1.setId_Cliente(c2.getId_Cliente());
+		boleto1.setId_Viaje(boleto.getId_Viaje());
+		//boleto1.setId_Tarifa();
+		tarifaService.BuscarID(boleto.getId_Viaje());
 		return 0;
 	}
 

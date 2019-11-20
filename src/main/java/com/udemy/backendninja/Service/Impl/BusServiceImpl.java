@@ -13,7 +13,7 @@ import com.udemy.backendninja.Service.BusService;
 @Service("BusService")
 public class BusServiceImpl implements BusService{
 	@Autowired
-	@Qualifier("busJPARepository")
+	@Qualifier("busJPARespository")
 	private BusJPARepository busJPARepository;
 	
 	@Override

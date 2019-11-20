@@ -21,18 +21,21 @@ public class Bus {
 	String anio;
 	@Column(name="color")
 	String  color;
+	@Column(name="num_asientos")
+	int  numero_asientos;
 
 	public Bus(){
 		
 	}
 
-	public Bus(int id,String placa,  String modelo, String anio, String color) {
+	public Bus(int id,String placa,  String modelo, String anio, String color, int numero_asientos) {
 		super();
 		this.id = id;
 		this.placa=placa;
 		this.modelo = modelo;
 		this.anio = anio;
 		this.color = color;
+		this.numero_asientos=numero_asientos;
 	}
 
 	public int getId() {
@@ -75,6 +78,15 @@ public class Bus {
 		this.color = color;
 	}
 
+	public int getNumero_asientos() {
+		return numero_asientos;
+	}
+
+	public void setNumero_asientos(int numero_asientos) {
+		this.numero_asientos = numero_asientos;
+	}
+
+	
 	
 
 }

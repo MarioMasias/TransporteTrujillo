@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1"/>
-<title>Registro de Buses</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<title>Notificar</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   
   <!-- LINK -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"  media="screen"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -17,7 +17,6 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
             <a href="#" id="menu-action">
               <i class="fa fa-bars"></i>
@@ -41,53 +40,60 @@
                 <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
-        
 	<div class="main">
-		<table class="table table-hover">
+		 <table class="table table-hover">
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>PLACA</th>
-					<th>MODELO</th>
-					<th>AÑO</th>
-					<th>COLOR</th>
-					<th>NUMERO ASIENTOS</th>
+					<th>NOMBRE</th>
+					<th>GRADO</th>
+					
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="bus : ${Buses}">
-					<th><span th:text="${bus.id}">ID</span></th>
-					<th><span th:text="${bus.placa}"></span></th>
-					<th><span th:text="${bus.modelo}"></span></th>
-					<th><span th:text="${bus.anio}"></span></th>
-					<th><span th:text="${bus.color}"></span></th>
-					<th><span th:text="${bus.numero_asientos}"></span></th>
+				<tr th:each="averia : ${Averias}">
+					<th><span th:text="${averia.id_averia}"></span></th>
+					<th><span th:text="${averia.nombre_averia}"></span></th>
+					<th><span th:text="${averia.grado_averia}"></span></th>
+					
 				</tr>
-			</tbody>
-		</table>
-			
-		<!--  <div class="col d-flex justify-content-center">
-			<div class="card">
-				<div class="col-sm-6">
-				<form action="#" th:action="@{/Bus/addBus}" th:object="${Bus1}" method="post">
-					<p>PLACA:   <input type="text" class="form-control"  th:field="*{placa}"></p>
-					<p>MODELO: 	<input type="text" class="form-control"  th:field="*{modelo}"></p>
-					<p>AÑO:     <input type="text" class="form-control"  th:field="*{anio}"></p>
-					<p>COLOR:   <input type="text" class="form-control"  th:field="*{color}"></p>
-					<p>NUMERO DE ASIENTOS:   <input type="number" class="form-control"  th:field="*{numero_asientos}"></p>
-					<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
-				</form>
+				</tbody>
+			</table>
+	
+	
+	
+	
+			<!--  <div class="col d-flex justify-content-center">
+				<div class="card">
+					<div class="col-sm-6">
+					<form action="#" th:action="@{/notificarnicio/addNotifica}" th:object="${notif}" method="post">
+						<p>Averia:   	<input type="text" class="form-control"  th:field="*{averia}"></p>
+						<p>Grado de Averia: 	<input type="number" class="form-control"  th:field="*{gradoaveria}"></p>
+						<p>Rango costo:      	<input type="text" class="form-control"  th:field="*{rangocosto}"></p>
+						<p>Detalle averia: 	<input type="text" class="form-control"  th:field="*{detalle_averia}"></p>
+						<label>Seleccione un bus: </label> 
+								<select name="bus" class="form-control" th:field="*{id_bus}">
+			                		<option th:each="bus : ${Buses}" th:value="${bus.id}" 
+			                		th:text="${bus.placa}" />
+			                    </select> <br />
+						<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha_registro}"></p>
+						<p>Nombre chofer:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+						<p>Apellido chofer: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+						
+						<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
+					</form>
+					</div>
 				</div>
-			</div>
-		</div>-->
-		
-		
-		
-		
+			</div>-->
+			
+			
+			
+			
+			
 		<div class="container">
 		  <!-- Button to Open the Modal -->
 		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-		    Agregar Bus
+		    Agregar Averia
 		  </button>
 
 		  <!-- The Modal -->
@@ -97,7 +103,7 @@
 		      
 		        <!-- Modal Header -->
 		        <div class="modal-header">
-		          <h4 class="modal-title">Agregar Bus</h4>
+		          <h4 class="modal-title"> Agregar Averia</h4>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        
@@ -105,14 +111,21 @@
 		        <div class="modal-body">
 					<div class="card">
 						<div class="col-sm-6">
-						<form action="#" th:action="@{/Bus/addBus}" th:object="${Bus1}" method="post">
-							<p>PLACA:   <input type="text" class="form-control"  th:field="*{placa}"></p>
-							<p>MODELO: 	<input type="text" class="form-control"  th:field="*{modelo}"></p>
-							<p>AÑO:     <input type="text" class="form-control"  th:field="*{anio}"></p>
-							<p>COLOR:   <input type="text" class="form-control"  th:field="*{color}"></p>
-							<p>NUMERO DE ASIENTOS:   <input type="number" class="form-control"  th:field="*{numero_asientos}"></p>
+						<form action="#" th:action="@{/notificarnicio/addNotifica}" th:object="${notif}" method="post">
+							<p>Averia:   	<input type="text" class="form-control"  th:field="*{averia}"></p>
+							<p>Grado de Averia: 	<input type="number" class="form-control"  th:field="*{gradoaveria}"></p>
+							<p>Rango costo:      	<input type="text" class="form-control"  th:field="*{rangocosto}"></p>
+							<p>Detalle averia: 	<input type="text" class="form-control"  th:field="*{detalle_averia}"></p>
+							<label>Seleccione un bus: </label> 
+									<select name="bus" class="form-control" th:field="*{id_bus}">
+				                		<option th:each="bus : ${Buses}" th:value="${bus.id}" 
+				                		th:text="${bus.placa}" />
+				                    </select> <br />
+							<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha_registro}"></p>
+							<p>Nombre chofer:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+							<p>Apellido chofer: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+							
 							<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</form>
 						</div>
 					</div>
@@ -128,6 +141,9 @@
 		  </div>
 		  
 		</div>
-	</div>	
+			
+
+			
+		</div>
 </body>
 </html>
