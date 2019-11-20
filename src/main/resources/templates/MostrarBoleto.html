@@ -3,6 +3,18 @@
 <head>
 <meta charset="ISO-8859-1"/>
 <title>Comprar Boleto</title>
+	<style>
+		.btn  .btn-warning .gaa{
+        background: #ccc;
+		    }
+		
+		    /** on active **/
+		
+		.btn .btn-warning .gaa:focus{
+		        background: red;
+		    }
+	
+	</style>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -83,6 +95,55 @@
 			                		<option th:each="viaje : ${Viajes}" th:value="${viaje.id_viaje}" 
 			                		th:text="${viaje.Origen +'-'+  viaje.Destino}" />
 			                    </select> <br />
+			                    
+			                    
+			                    <div class="col-sm-12" id="my_styles">
+							         <button type="submit" class="btn btn-warning gaa" id="1">A1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="2">B1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="3">C1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="4">D1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="5">E1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="6">F1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="7">G1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="8">H1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="9">I1</button>
+							         <button type="submit" class="btn btn-warning gaa" id="10">J1</button>
+							     	</br>
+							         <button type="submit" class="btn btn-warning gaa" id="1">A2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="2">B2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="3">C2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="4">D2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="5">E2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="6">F2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="7">G2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="8">H2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="9">I2</button>
+							         <button type="submit" class="btn btn-warning gaa" id="10">J2</button>
+							         </br>
+							         <label>                        1° Piso</label>
+							         </br>
+							         <button type="submit" class="btn btn-warning gaa" id="1">A3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="2">B3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="3">C3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="4">D3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="5">E3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="6">F3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="7">G3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="8">H3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="9">I3</button>
+							         <button type="submit" class="btn btn-warning gaa" id="10">J3</button>
+							         </br>
+							         <button type="submit" class="btn btn-warning gaa" id="1">A4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="2">B4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="3">C4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="4">D4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="5">E4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="6">F4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="7">G4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="8">H4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="9">I4</button>
+							         <button type="submit" class="btn btn-warning gaa" id="10">J4</button>
+							    </div>
 						<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
 					</form>
 					</div>
