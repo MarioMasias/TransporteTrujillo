@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Mantenimiento</title>
+	<style>
+		.btn  .btn-warning .gaa{
+        background: #ccc;
+		    }
+		
+		    /** on active **/
+		
+		.btn .btn-warning .gaa:focus{
+		        background: red;
+		    }
+	
+	</style>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <!-- LINK -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"  media="screen"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
+            <a href="#" id="menu-action">
+              <i class="fa fa-bars"></i>
+              <span>Salir</span>
+            </a>
+            <div class="logo">
+                <img class="navbar-logo"  src="../imgs/Logo.png" /> &nbsp;&nbsp;&nbsp;
+                <span style="color:black;">Sistema de Transporte Junin</span>
+            </div>
+          </div>
+
+	   <div class="sidebar">
+            <ul>
+            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li><a href="http://localhost:8080/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li><a href="http://localhost:8080/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            </ul>
+        </div>
+	<div class="main">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>PLACA DEL BUS</th>
+					<th>ESTADO</th>
+					<th>FECHA DE MANTENIMIENTO</th>
+					<th>ver detalles</th>
+					<th>ACCION</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>A1J-124</td>
+					<td>REPARADO</td>
+					<td>06/06/2010</td>
+					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><btn class="btn btn-success">Enviar a verificacion</btn></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>A56-125</td>
+					<td>REPARADO</td>
+					<td>06/06/2010</td>
+					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><btn class="btn btn-success">Enviar a verificacion</btn></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>GRE-541</td>
+					<td>REPARADO</td>
+					<td>06/06/2010</td>
+					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><btn class="btn btn-success">Enviar a verificacion</btn></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>CIA-965</td>
+					<td>REPARADO</td>
+					<td>06/06/2010</td>
+					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><btn class="btn btn-success">Enviar a verificacion</btn></td>
+				</tr>
+				</tbody>
+			</table>
+	
+	
+
+			
+
+			
+		</div>
+</body>
+</html>
