@@ -9,19 +9,29 @@
 
   <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
 
-    <link rel="stylesheet" href="../static/css/style.css" media="screen" type="text/css" />
-
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="screen" type="text/css" />
+	<style>
+		body{
+				background: #3423a6;
+				font-size:  12px;
+				background-image :url("[[@{/imgs/transportes-junin.jpg}]]");
+				background-repeat:no-repeat;
+				background-size:100%;
+				background-attachment: scroll;
+				
+			}
+	</style>
 </head>
 
 <body>
 
 
   <div class="login-card">
-    <h1>Acceso <img class="candado"  src="../static/imgs/candado.png"></h1><br>
+    <h1>Sistema de Transporte Junin <img class="candado"  th:src="@{/imgs/candado.png}"></h1><br>
      
-  <form>
-    <input type="text" name="user" placeholder="Username">
-    <input type="password" name="pass" placeholder="Password">
+  <form action="#" th:action="@{/validar}" th:object="${usuario}" method="post">
+    <input type="text" name="user" th:field="*{username}" placeholder="Username">
+    <input type="password" name="pass" th:field="*{pass}" placeholder="Password">
     <input type="submit" name="login" class="login login-submit" value="Acceder">
   </form>
 

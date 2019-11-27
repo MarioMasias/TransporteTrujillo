@@ -7,5 +7,6 @@ import com.udemy.backendninja.Entity.Averia;
 public interface AveriaService {
 	public abstract List<Averia> listAllAveria();
 	public abstract Averia addAveria(Averia averia);
+	public abstract Averia obtenerAveria(int id);
 
 }

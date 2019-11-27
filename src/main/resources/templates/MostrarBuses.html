@@ -15,6 +15,11 @@
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	
+  	<!-- DATATABLE -->
+  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -31,19 +36,20 @@
 
 	   <div class="sidebar">
             <ul>
-            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
-                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
-                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
-                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            	<li><a href="http://localhost:8085/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8085/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8085/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8085/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8085/Cliente/verCliente"><i class="far fa-address-card"></i><span>Clientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Verificacion/mostrar"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
         
 	<div class="main">
-		<table class="table table-hover">
+		<table id="tablaClientes" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -104,15 +110,61 @@
 		        <!-- Modal body -->
 		        <div class="modal-body">
 					<div class="card">
-						<div class="col-sm-6">
+						<div class="col-sm-12">
 						<form action="#" th:action="@{/Bus/addBus}" th:object="${Bus1}" method="post">
 							<p>PLACA:   <input type="text" class="form-control"  th:field="*{placa}"></p>
 							<p>MODELO: 	<input type="text" class="form-control"  th:field="*{modelo}"></p>
-							<p>AÑO:     <input type="text" class="form-control"  th:field="*{anio}"></p>
+							<p>ANIO:     <input type="text" class="form-control"  th:field="*{anio}"></p>
 							<p>COLOR:   <input type="text" class="form-control"  th:field="*{color}"></p>
 							<p>NUMERO DE ASIENTOS:   <input type="number" class="form-control"  th:field="*{numero_asientos}"></p>
+							<!--  
+							<input class="btn btn-success" type="button" value="A1">
+							<input class="btn btn-success" type="button" value="B1">
+							<input class="btn btn-success" type="button" value="C1">
+							<input class="btn btn-success" type="button" value="D1">
+							<input class="btn btn-success" type="button" value="E1">
+							<input class="btn btn-success" type="button" value="F1">
+							<input class="btn btn-success" type="button" value="G1">
+							<input class="btn btn-success" type="button" value="H1">
+							<input class="btn btn-success" type="button" value="I1">
+							<input class="btn btn-success" type="button" value="J1">
+							<br>
+							<input class="btn btn-success" type="button" value="A1">
+							<input class="btn btn-success" type="button" value="B1">
+							<input class="btn btn-success" type="button" value="C1">
+							<input class="btn btn-success" type="button" value="D1">
+							<input class="btn btn-success" type="button" value="E1">
+							<input class="btn btn-success" type="button" value="F1">
+							<input class="btn btn-success" type="button" value="G1">
+							<input class="btn btn-success" type="button" value="H1">
+							<input class="btn btn-success" type="button" value="I1">
+							<input class="btn btn-success" type="button" value="J1">
+							<br>
+							<label>			PISO 1              </label>
+							<br>
+							<input class="btn btn-success" type="button" value="A1">
+							<input class="btn btn-success" type="button" value="B1">
+							<input class="btn btn-success" type="button" value="C1">
+							<input class="btn btn-success" type="button" value="D1">
+							<input class="btn btn-success" type="button" value="E1">
+							<input class="btn btn-success" type="button" value="F1">
+							<input class="btn btn-success" type="button" value="G1">
+							<input class="btn btn-success" type="button" value="H1">
+							<input class="btn btn-success" type="button" value="I1">
+							<input class="btn btn-success" type="button" value="J1">
+							<br>
+							<input class="btn btn-success" type="button" value="A1">
+							<input class="btn btn-success" type="button" value="B1">
+							<input class="btn btn-success" type="button" value="C1">
+							<input class="btn btn-success" type="button" value="D1">
+							<input class="btn btn-success" type="button" value="E1">
+							<input class="btn btn-success" type="button" value="F1">
+							<input class="btn btn-success" type="button" value="G1">
+							<input class="btn btn-success" type="button" value="H1">
+							<input class="btn btn-success" type="button" value="I1">
+							<input class="btn btn-success" type="button" value="J1">
+							<br><br>-->
 							<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</form>
 						</div>
 					</div>
@@ -129,5 +181,11 @@
 		  
 		</div>
 	</div>	
+	
+	<script>
+		$(document).ready(function() {
+		    $('#tablaClientes').DataTable();
+		} );
+	</script>
 </body>
 </html>

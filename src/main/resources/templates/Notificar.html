@@ -15,6 +15,11 @@
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	
+  	<!-- DATATABLE -->
+  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
@@ -30,18 +35,20 @@
 
 	   <div class="sidebar">
             <ul>
-            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
-                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
-                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
-                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            	<li><a href="http://localhost:8085/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8085/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8085/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8085/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8085/Cliente/verCliente"><i class="far fa-address-card"></i><span>Clientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Verificacion/mostrar"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
 	<div class="main">
-		 <table class="table table-hover">
+	<h1>Modulo de Notificacion</h1>
+		 <table id="tablaClientes" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -110,20 +117,45 @@
 		        <!-- Modal body -->
 		        <div class="modal-body">
 					<div class="card">
-						<div class="col-sm-6">
+						<div class="col-sm-12">
 						<form action="#" th:action="@{/notificarnicio/addNotifica}" th:object="${notif}" method="post">
-							<p>Averia:   	<input type="text" class="form-control"  th:field="*{averia}"></p>
-							<p>Grado de Averia: 	<input type="number" class="form-control"  th:field="*{gradoaveria}"></p>
-							<p>Rango costo:      	<input type="text" class="form-control"  th:field="*{rangocosto}"></p>
-							<p>Detalle averia: 	<input type="text" class="form-control"  th:field="*{detalle_averia}"></p>
+							<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>Averia:   	<input type="text" class="form-control"  th:field="*{averia}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>Grado de Averia: 	<input type="number" class="form-control"  th:field="*{gradoaveria}"></p>
+                                </div>
+                          </div>
+                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>Rango costo:      	<input type="text" class="form-control"  th:field="*{rangocosto}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>Detalle averia: 	<input type="text" class="form-control"  th:field="*{detalle_averia}"></p>
+                                </div>
+                          </div>
+						
+							
+							
+							
+							
 							<label>Seleccione un bus: </label> 
 									<select name="bus" class="form-control" th:field="*{id_bus}">
 				                		<option th:each="bus : ${Buses}" th:value="${bus.id}" 
 				                		th:text="${bus.placa}" />
 				                    </select> <br />
-							<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha_registro}"></p>
-							<p>Nombre chofer:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
-							<p>Apellido chofer: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+							<p>FECHA:   	<input type="date" class="form-control"  th:field="*{fecha_registro}"></p>
+							<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>Nombre chofer:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>Apellido chofer: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+                                </div>
+                          </div>
+							
+							
 							
 							<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
 						</form>
@@ -141,9 +173,12 @@
 		  </div>
 		  
 		</div>
-			
-
-			
 		</div>
+		
+	<script>
+		$(document).ready(function() {
+		    $('#tablaClientes').DataTable();
+		} );
+	</script>
 </body>
 </html>

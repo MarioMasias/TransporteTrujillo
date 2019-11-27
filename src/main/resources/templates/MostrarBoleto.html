@@ -23,10 +23,16 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"  media="screen"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/asientos.css}"  media="screen"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	
+  	<!-- DATATABLE -->
+  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
@@ -42,18 +48,19 @@
 
 	   <div class="sidebar">
             <ul>
-            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
-                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
-                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
-                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
-                <li><a href="http://localhost:8080/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            	<li><a href="http://localhost:8085/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8085/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8085/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8085/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8085/Cliente/verCliente"><i class="far fa-address-card"></i><span>Clientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Verificacion/mostrar"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
 	<div class="main">
-		<table class="table table-hover">
+		<table id="tablaClientes" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -71,32 +78,164 @@
 				</tbody>
 			</table>
 	
-	
-	
-	
-			<div class="col d-flex justify-content-center">
-				<div class="card">
-					<div class="col-sm-6">
-					<form action="#" th:action="@{/Boleto/addBoleto}" th:object="${BoletoForm1}" method="post">
-						<p>Nombre:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
-						<p>Apellido: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
-						<p>DNI:      	<input type="text" class="form-control"  th:field="*{DNI}"></p>
-						<p>TELEFONO: 	<input type="text" class="form-control"  th:field="*{telefono}"></p>
+
+		<div class="container">
+		  <!-- Button to Open the Modal -->
+		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+		   Comprar Boleto
+		  </button>
+
+		  <!-- The Modal -->
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Comprar Boleto</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-12">
+						<form action="#" th:action="@{/Boleto/addBoleto}" th:object="${BoletoForm1}" method="post">
+						<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>Nombre:   	<input type="text" class="form-control"  th:field="*{nombre}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>Apellido: 	<input type="text" class="form-control"  th:field="*{apellido}"></p>
+                                </div>
+                          </div>
+                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>DNI:   	<input type="text" class="form-control"  th:field="*{DNI}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>Telefono: 	<input type="text" class="form-control"  th:field="*{telefono}"></p>
+                                </div>
+                          </div>	
 						<label>Seleccione un bus: </label> 
 								<select name="bus" class="form-control" th:field="*{id_Bus}">
 			                		<option th:each="bus : ${Buses}" th:value="${bus.id}" 
 			                		th:text="${bus.placa}" />
 			                    </select> <br />
-						<p>FECHA:   	<input type="text" class="form-control"  th:field="*{fecha}"></p>
-						<p>HORA PARTIDA:<input type="text" class="form-control"  th:field="*{hora_partida}"></p>
 						
-						<label>Seleccione un viaje: </label> 
+						
+						
+						<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+                                <div style="width:49%;padding-right:1%;">
+                                    <p>FECHA:   	<input type="date" class="form-control"  th:field="*{fecha}"></p>
+                                </div>
+                                <div style="width:49%;padding-left:1%;">
+                                    <p>HORA PARTIDA:<input type="date" class="form-control"  th:field="*{hora_partida}"></p>
+                                </div>
+                          </div>
+						
+						<!-- <label>Seleccione un viaje: </label> 
 								<select name="viaje" class="form-control" th:field="*{id_Viaje}">
 			                		<option th:each="viaje : ${Viajes}" th:value="${viaje.id_viaje}" 
 			                		th:text="${viaje.Origen +'-'+  viaje.Destino}" />
+			                    </select> <br /> -->
+			                    
+			            <label>Seleccione un viaje: </label> 
+								<select name="viaje" class="form-control" th:field="*{id_Viaje}">
+			                		<option th:each="viaje : ${TarifasCosto}" th:value="1" 
+			                		th:text="${viaje.Origen +'-'+  viaje.Destino + ':  s/.'+ viaje.precio}" />
 			                    </select> <br />
 			                    
 			                    
+			                    <div class="col-sm-12" id="my_styles">
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1A" name="group3[]">
+			                    	<label for="1A">1A</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1B" name="group3[]">
+			                    	<label for="1B">1B</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1C" name="group3[]">
+			                    	<label for="1C">1C</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1D" name="group3[]">
+			                    	<label for="1D">1D</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1E" name="group3[]">
+			                    	<label for="1E">1E</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1F" name="group3[]">
+			                    	<label for="1F">1F</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1G" name="group3[]">
+			                    	<label for="1G">1G</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1H" name="group3[]">
+			                    	<label for="1H">1H</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1I" name="group3[]">
+			                    	<label for="1I">1I</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1J" name="group3[]">
+			                    	<label for="1J">1J</label>
+			                    	<br/>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1A" name="group3[]">
+			                    	<label for="1A">2A</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1B" name="group3[]">
+			                    	<label for="1B">2B</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1C" name="group3[]">
+			                    	<label for="1C">2C</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1D" name="group3[]">
+			                    	<label for="1D">2D</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1E" name="group3[]">
+			                    	<label for="1E">2E</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1F" name="group3[]">
+			                    	<label for="1F">2F</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1G" name="group3[]">
+			                    	<label for="1G">2G</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1H" name="group3[]">
+			                    	<label for="1H">2H</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1I" name="group3[]">
+			                    	<label for="1I">2I</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1J" name="group3[]">
+			                    	<label for="1J">2J</label>
+			                    	<br/>
+			                    	Piso 1
+			                    	<br/>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1A" name="group3[]">
+			                    	<label for="1A">3A</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1B" name="group3[]">
+			                    	<label for="1B">3B</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1C" name="group3[]">
+			                    	<label for="1C">3C</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1D" name="group3[]">
+			                    	<label for="1D">3D</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1E" name="group3[]">
+			                    	<label for="1E">3E</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1F" name="group3[]">
+			                    	<label for="1F">3F</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1G" name="group3[]">
+			                    	<label for="1G">3G</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1H" name="group3[]">
+			                    	<label for="1H">3H</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1I" name="group3[]">
+			                    	<label for="1I">3I</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1J" name="group3[]">
+			                    	<label for="1J">3J</label>
+			                    	<br/>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1A" name="group3[]">
+			                    	<label for="1A">4A</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1B" name="group3[]">
+			                    	<label for="1B">4B</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1C" name="group3[]">
+			                    	<label for="1C">4C</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1D" name="group3[]">
+			                    	<label for="1D">4D</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1E" name="group3[]">
+			                    	<label for="1E">4E</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1F" name="group3[]">
+			                    	<label for="1F">4F</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1G" name="group3[]">
+			                    	<label for="1G">4G</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1H" name="group3[]">
+			                    	<label for="1H">4H</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1I" name="group3[]">
+			                    	<label for="1I">4I</label>
+			                    	<input class="btn btn-warning gaa" type="checkbox" value="1J" name="group3[]">
+			                    	<label for="1J">4J</label>
+			                    	<br/>
+			                    </div>
+			                    <!-- 
 			                    <div class="col-sm-12" id="my_styles">
 							         <button type="submit" class="btn btn-warning gaa" id="1">A1</button>
 							         <button type="submit" class="btn btn-warning gaa" id="2">B1</button>
@@ -120,7 +259,7 @@
 							         <button type="submit" class="btn btn-warning gaa" id="9">I2</button>
 							         <button type="submit" class="btn btn-warning gaa" id="10">J2</button>
 							         </br>
-							         <label>                        1° Piso</label>
+							         <label>                        Piso "1"</label>
 							         </br>
 							         <button type="submit" class="btn btn-warning gaa" id="1">A3</button>
 							         <button type="submit" class="btn btn-warning gaa" id="2">B3</button>
@@ -143,15 +282,35 @@
 							         <button type="submit" class="btn btn-warning gaa" id="8">H4</button>
 							         <button type="submit" class="btn btn-warning gaa" id="9">I4</button>
 							         <button type="submit" class="btn btn-warning gaa" id="10">J4</button>
-							    </div>
+							    </div>   -->
+
 						<p><input type="submit"  class="btn btn-success" value="ENVIAR"></p>
 					</form>
+						</div>
 					</div>
-				</div>
-			</div>
-			
-
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		          <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
+		  
+		</div>
 			
 		</div>
+		
+	<script>
+		$(document).ready(function() {
+		    $('#tablaClientes').DataTable();
+		} );
+		
+		$('input[type="checkbox"]').on('change', function() {
+		    $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+		});
+	</script>
 </body>
 </html>

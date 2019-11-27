@@ -8,5 +8,6 @@ public interface BusService {
 	
 	public abstract List<Bus> listar();
 	public abstract Bus Agregar(Bus bus);
+	public abstract Bus Obtener(int id); 
 
 }

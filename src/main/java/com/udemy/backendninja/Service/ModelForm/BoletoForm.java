@@ -10,13 +10,14 @@ public class BoletoForm {
 	private String apellido;
 	private String DNI;
 	private String telefono;
+	private String asiento;
 	
 	public BoletoForm() {
 		
 	}
 
 	public BoletoForm(int id_Bus, String fecha, String hora_partida, int id_Viaje, String nombre, String apellido,
-			String dNI, String telefono) {
+			String dNI, String telefono, String asiento) {
 		super();
 		this.id_Bus = id_Bus;
 		this.fecha = fecha;
@@ -26,6 +27,7 @@ public class BoletoForm {
 		this.apellido = apellido;
 		DNI = dNI;
 		this.telefono = telefono;
+		this.asiento = asiento;
 	}
 
 	public int getId_Bus() {
@@ -90,6 +92,14 @@ public class BoletoForm {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getAsiento() {
+		return asiento;
+	}
+
+	public void setAsiento(String asiento) {
+		this.asiento = asiento;
 	}
 
 	@Override

@@ -15,6 +15,11 @@
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	
+  	<!-- DATATABLE -->
+  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 <body>
 	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
             <a href="#" id="menu-action">
@@ -29,18 +34,20 @@
 
 	   <div class="sidebar">
             <ul>
-            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
-                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
-                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
-                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            	<li><a href="http://localhost:8085/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8085/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8085/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8085/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8085/Cliente/verCliente"><i class="far fa-address-card"></i><span>Clientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Verificacion/mostrar"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
 	<div class="main">
-		<table class="table table-hover">
+		<h1>Gestion de Viajes</h1>
+		<table id="tablaClientes" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -133,5 +140,11 @@
 		</div>
 		
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#tablaClientes').DataTable();
+		} );
+	</script>
 </body>
 </html>

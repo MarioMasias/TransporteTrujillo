@@ -28,4 +28,17 @@ public class AveriaServiceImpl implements AveriaService{
 		return averiaJPARepository.save(averia);
 	}
 
+	@Override
+	public Averia obtenerAveria(int id) {
+		Averia averia= new Averia();
+		List<Averia> averias= averiaJPARepository.findAll();
+		for (int i=0;i < averias.size(); i++) {
+			if(averias.get(i).getId_averia()==id) {
+				averia=averias.get(i);
+				i=averias.size();
+				}
+		}
+		return averia;
+	}
+
 }

@@ -27,6 +27,11 @@
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	
+  	<!-- DATATABLE -->
+  	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="header" style="background-color: rgba(135, 135, 135, 0.3);">
@@ -42,21 +47,22 @@
 
 	   <div class="sidebar">
             <ul>
-            	<li><a href="http://localhost:8080/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
-                <li><a href="http://localhost:8080/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
-                <li><a href="http://localhost:8080/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
-                <li><a href="http://localhost:8080/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
-                <li><a href="http://localhost:8080/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
-                <li><a href="http://localhost:8080/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
-                <li><a href="http://localhost:8080/Bus/verBus"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
+            	<li><a href="http://localhost:8085/Inicio/principal"><i class="fa fa-home"></i><span>Inicio</span></a></li>
+                <li><a href="http://localhost:8085/Viaje/verViaje"><i class="fa fa-plane"></i><span>Viaje</span></a></li>
+                <li><a href="http://localhost:8085/Boleto/verBoleto"><i class="fa fa-file"></i><span>Boleto</span></a></li>
+                <li><a href="http://localhost:8085/Bus/verBus"><i class="fa fa-car"></i><span>Bus</span></a></li>
+                <li><a href="http://localhost:8085/Cliente/verCliente"><i class="far fa-address-card"></i><span>Clientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/notificarnicio/mostrar"><i class="fa fa-wrench"></i><span>Notificar Averia</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Pendientes/mostrar"><i class="fa fa-car"></i><span>Pendientes</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Mantenimiento/mostrar"><i class="fa fa-car"></i><span>Mantenimiento</span></a></li>
+                <li style="background-color:dodgerblue;"><a href="http://localhost:8085/Verificacion/mostrar"><i class="fa fa-car"></i><span>Verificacioon de Bus</span></a></li>
             </ul>
         </div>
 	<div class="main">
-		<table class="table table-hover">
+	<h1>Modulo de Pendientes</h1>
+		<table id="tablaClientes" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>PLACA DEL BUS</th>
 					<th>ESTADO</th>
 					<th>FECHA DE INCIDENTE</th>
@@ -65,46 +71,221 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>A1J-124</td>
-					<td>MALOGRADO</td>
-					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
-					<td><btn class="btn btn-success">Enviar a mantenimiento</btn></td>
+				<tr th:each="pendiente : ${Pendientes}">
+					 <th><span th:text="${pendiente.placa}">ID</span></th>
+					<th><span th:text="${pendiente.estado}"></span></th>
+					<th><span th:text="${pendiente.fecha}"></span></th>
+					<th><span th:text="${pendiente.Detalle_averia}"></span></th>
+					<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+		    Ver detalles
+		  </button></td>
+					<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+		    Enviar a mantenimiento
+		  </button></td>
+		  
+		  
+		  
+		  
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Enviar a Mantenimiento</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <!-- Modal body -->
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-12">
+							<form  action="#" th:action="@{/Pendientes/addMantenimiento}" th:object="${Mantenimiento}" method="post">
+								<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Placa del Bus:   <label><span th:text="${pendiente.placa}">ID</span></label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>ESTADO: 	<label><span th:text="${pendiente.estado}"></span></label></p>
+	                                </div>
+	                          </div>
+							  <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Fecha de incidente:   	<label><span th:text="${pendiente.fecha}"></span></label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>Los frenons se vacearon, el chofer perdio el control
+	                                    del vehiculo , lo que provoco que el bus pasara un puente de tamaño pequeño y se perdiera la 
+	                                    parte superior del bus</label></p>
+	                                </div>
+	                          </div>
+								<button class="btn btn-success">Enviar a mantenimiento</button>
+							</form>
+						</div>
+					</div>
+		        </div>
+		        
+		        <!-- Modal footer -->
+		        <div class="modal-footer">
+		           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
+		  
+		  
+		  
+		  
+		  <div class="modal fade" id="myModal1">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <div class="modal-header">
+		          <h4 class="modal-title">Detalles</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-12">
+							<form>
+								<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Placa del Bus:   <label><span th:text="${pendiente.placa}"></span></label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Nombre de Averia: 	<label><span th:text="${pendiente.nombre_averia}"></span></label></p>
+	                                </div>
+	                          </div>
+							  <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Fecha de incidente:   	<label><span th:text="${pendiente.fecha}"></span></label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>Los frenos se vacearon, el chofer perdio el control
+	                                    del vehiculo , lo que provoco que el bus pasara un puente de tamaño pequeño y se perdiera la 
+	                                    parte superior del bus</label></p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Anio del auto:   	<label><span th:text="${pendiente.anio}"></span></label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Numero de asientos: 	<label><span th:text="${pendiente.numero_asientos}"></span></p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>ESTADO:   	<label>Muy grave</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>MALOGRADO</label></p>
+	                                </div>
+	                          </div>
+							</form>
+						</div>
+					</div>
+		        </div>
+		        
+		        
+		        <div class="modal-footer">
+		           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
+		  
+		  
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>A56-125</td>
-					<td>MALOGRADO</td>
-					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
-					<td><btn class="btn btn-success">Enviar a mantenimiento</btn></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>GRE-541</td>
-					<td>MALOGRADO</td>
-					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
-					<td><btn class="btn btn-success">Enviar a mantenimiento</btn></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>CIA-965</td>
-					<td>MALOGRADO</td>
-					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
-					<td><btn class="btn btn-success">Enviar a mantenimiento</btn></td>
-				</tr>
-				</tbody>
+				
+			</tbody>
+
 			</table>
-	
-	
 
-			
 
-			
+
+
+
+
+
+		  
+		  
+		    <!--  
+		  <div class="modal fade" id="myModal1">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <div class="modal-header">
+		          <h4 class="modal-title">Detalles</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-12">
+							<form>
+								<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Placa del Bus:   <label>CIA-965</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Nombre de Averia: 	<label>Destruccion parcial del vehiculo</label></p>
+	                                </div>
+	                          </div>
+							  <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Fecha de incidente:   	<label>06/06/2010</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>Los frenos se vacearon, el chofer perdio el control
+	                                    del vehiculo , lo que provoco que el bus pasara un puente de tamaño pequeño y se perdiera la 
+	                                    parte superior del bus</label></p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Anio del auto:   	<label>1989</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Numero de asientos: 	<label>40</p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>ESTADO:   	<label>Muy grave</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>MALOGRADO</label></p>
+	                                </div>
+	                          </div>
+							</form>
+						</div>
+					</div>
+		        </div>
+		        
+		        
+		        <div class="modal-footer">
+		           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>-->
+
+		
 		</div>
+	<script>
+		$(document).ready(function() {
+		    $('#tablaClientes').DataTable();
+		} );
+		
+		$("#mi-boton").click(function(){
+			  $(this).toggleClass("btn-danger");
+			  $(this).attr('disabled','disabled');
+			});
+	</script>
 </body>
 </html>
