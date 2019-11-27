@@ -76,35 +76,109 @@
 					<td>A1J-124</td>
 					<td>REPARADO</td>
 					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+		    Ver detalles
+		  </button></td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>A56-125</td>
 					<td>REPARADO</td>
 					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+		    Ver detalles
+		  </button></td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>GRE-541</td>
 					<td>EVALUAR</td>
 					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+		    Ver detalles
+		  </button></td>
 				</tr>
 				<tr>
 					<td>4</td>
 					<td>CIA-965</td>
 					<td>REPARADO</td>
 					<td>06/06//2010</td>
-					<td><btn class="btn btn-success">ver detalles</btn></td>
+					<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal1">
+		    Ver detalles
+		  </button></td>
 				</tr>
 				</tbody>
 			</table>
 	
 	
 
-			
+			<div class="modal fade" id="myModal1">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		      
+		        <div class="modal-header">
+		          <h4 class="modal-title">Detalles</h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		        
+		        <div class="modal-body">
+					<div class="card">
+						<div class="col-sm-12">
+							<form>
+								<div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Placa del Bus:   <label>CIA-965</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Nombre de Averia: 	<label>Destruccion parcial del vehiculo</label></p>
+	                                </div>
+	                          </div>
+							  <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Fecha de incidente:   	<label>27/11/2010</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>Los frenos se vacearon, el chofer perdio el control
+	                                    del vehiculo , lo que provoco que el bus pasara un puente de tamaño pequeño y se perdiera la 
+	                                    parte superior del bus</label></p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Anio del auto:   	<label>1989</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Numero de asientos: 	<label>40</p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>ESTADO:   	<label>Muy grave</label></p>
+	                                </div>
+	                                <div style="width:49%;padding-left:1%;">
+	                                    <p>Detalle de Averia: 	<label>SOLUCIONADO</label></p>
+	                                </div>
+	                          </div>
+	                          <div class="form-group from-group-edit" style="display: flex; align-items: center; flex-direction: row;" >
+	                                <div style="width:49%;padding-right:1%;">
+	                                    <p>Detalles de Mantenimiento:   	<label>Se procedio a comprar refacciones para solucionar el problema,
+	                                    se hizo una reconstruccion del techo del bus</label></p>
+	                                </div>
+	                                
+	                          </div>
+							</form>
+						</div>
+					</div>
+		        </div>
+		        
+		        
+		        <div class="modal-footer">
+		           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        </div>
+		        
+		      </div>
+		    </div>
+		  </div>
 
 			
 		</div>
